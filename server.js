@@ -21,7 +21,7 @@ server.use('/api/posts', postRoute);
 server.get('/', async (req, res, next) => {
 	res.send(`
 		<h2>BINGO</h2>
-        <p>You got hit the API</p>
+        <p>You hit the API</p>
 	`);
 });
 

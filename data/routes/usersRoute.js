@@ -45,16 +45,36 @@ router.get('/:id/posts', async (req, res) => {
 	}
 });
 
-// Edit a user - NOT WORKING
+// Update a user
 router.put('/:id', async (req, res) => {
 	const { id } = req.params;
 	const { name } = req.body;
 	const changes = { name };
 	try {
 		const user = await usersdb.getById(id);
+		console.log(user);
 		if (user) {
-			usersdb.update(id, changes);
-			res.status(200).json({ success: true, message: `user updated` });
+			const updatedUser = await usersdb.update(id, changes);
+			res.status(200).json({ success: true, message: `user updated`, updatedUser });
+		} else {
+			res.status(404).json({ success: false, message: 'User not found' });
+		}
+	} catch {
+		res.status(500).json({ success: false });
+	}
+});
+
+// Delete user
+router.put('/:id', async (req, res) => {
+	const { id } = req.params;
+	const { name } = req.body;
+	const changes = { name };
+	try {
+		const user = await usersdb.getById(id);
+		console.log(user);
+		if (user) {
+			const updatedUser = await usersdb.update(id, changes);
+			res.status(200).json({ success: true, message: `user updated`, updatedUser });
 		} else {
 			res.status(404).json({ success: false, message: 'User not found' });
 		}
