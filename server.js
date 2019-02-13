@@ -5,6 +5,7 @@ const server = express();
 
 //Import Routes
 const userRoute = require('./data/routes/usersRoute');
+const postRoute = require('./data/routes/postRoute');
 
 server.use(express.json());
 server.use(helmet());
@@ -12,6 +13,7 @@ server.use(morgan('dev'));
 
 //define routes
 server.use('/api/users', userRoute);
+server.use('/api/posts', postRoute);
 //router handler to upercase name before it reaches POST OR PUT
 // //Users enpoint
 // //Posts endpoint
