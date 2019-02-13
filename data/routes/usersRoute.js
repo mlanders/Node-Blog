@@ -53,7 +53,7 @@ router.get('/:id/posts', async (req, res) => {
 });
 
 // Update a user
-router.put('/:id', async (req, res) => {
+router.put('/:id', uppercase, async (req, res) => {
 	const { id } = req.params;
 	const { name } = req.body;
 	const changes = { name };
